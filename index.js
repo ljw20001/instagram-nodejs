@@ -67,6 +67,10 @@ app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
 
+app.get("/profile", (req, res) => {
+  res.render("profile.ejs",{user:req.user});
+});
+
 app.get("/search", (req, res) => {
   res.render("search.ejs",{
     user: req.user, 
@@ -85,7 +89,7 @@ app.get("/post", async(req, res) => {
       target,
       
     ]);  
-    
+     
     res.render("post.ejs",{profile: result.rows[0].profile, 
       post:result.rows[0].post
     }); 

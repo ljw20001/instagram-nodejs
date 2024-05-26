@@ -2,8 +2,9 @@
 <%list%>
 <%user%>
 <% list.map((person)=>{%>
-    <div id="main"><a href=""><%=person.profile%><%=person.email%></a>
-        <%if(user.followin.includes(person.email)){%>
+    <div id="main"><a href="/post?email=<%person.email%>"><%=person.profile%><%=person.email%></a>
+
+        <%if(user.followin!=null&&user.followin.includes(person.email)){%>
         <form action="/unfollow?email=<%= person.email %>" method="POST">
         <input type="hidden" name ="redirURL" value="/">
         <button type="submit">언팔로우</button>
