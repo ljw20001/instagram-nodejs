@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="contentsWrap">
+        <form action="/login" method="POST">
+        <div class="loginWindow">
+        
+            <img src="styles/logo.png" alt="l" id="instaLogo">
+            <input type="text"  placeholder="아이디는 1"class="inlineToBlock" name="username">
+            <input type="password" autoComplete="off" placeholder="비밀번호도 1" class="inlineToBlock" name="password">
+        <button type="submit" class="inlineToBlock ordinaryLogin activatedLoginColor">로그인</button>
+        </form>
+
+        <div class="horizonAndOrWrap">
+            <hr class="leftHr">
+            <div class="or">또는</div>
+            <hr class="rightHr">
+        </div>
+
+        <a href="#" class="noneunderline">
+            <button class="inlineToBlock facebookLogin">
+                <img src="styles/facebook.png" alt="v" class="facebookIcon">
+                Facebook으로 로그인
+            </button>
+        </a>
+    
+    </div>
+    <div class="haveAccount">
+        <p>계정이 없으신가요?
+          <form id="my_form" method="get" action="/register">
+          <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="noneunderline">가입하기</a>
+          </form>
+        </p>
+    </div>
+  </div> 
+	<%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/search" method="post">
+        <input type="text" name="username">
+        <button type="submit">검색</button>
+    </form>
+    <!-- 검색했을 때 가져오는 유저  -->
+<% if(searcheduser!=null){ %>   
+
+    <% if(searcheduser.followin==null){ %>
+        followin:0
+    <% } else { %>
+        <%= searcheduser.followin.length %>
+    <% } %>
+
+    <p>email:<%= searcheduser.email %></p>
+
+    <% if(searcheduser.follower==null){ %>
+        follower:0
+    <% } else { %>
+        follower:<%= searcheduser.follower.length %>
+    <% } %>
+    <br>
+    
+    
+    <% if(user.followin!=null && user.followin.includes(searcheduser.email)){ %>
+         
+        <form id="1" method="post" action="/unfollow?email=<%= searcheduser.email %>">
+            <a href="javascript:{}" onclick="document.getElementById('1').submit();" class="noneunderline">언팔로우</a>
+        </form> 
+        
+        <% } else { %>
+            <form id="2" method="post" action="/follow?email=<%= searcheduser.email %>">
+                <a href="javascript:{}" onclick="document.getElementById('2').submit();" class="noneunderline">팔로우</a>
+            </form>  
+        <% } %>
+    
+<% } %>
+
+</body>
+</html>  
+    
+    
+    
+  
+
+

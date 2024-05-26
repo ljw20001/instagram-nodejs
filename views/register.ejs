@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="contentsWrap">
+        <form action="/register" method="POST">
+        <div class="loginWindow">
+        
+            <img src="styles/logo.png" alt="l" id="instaLogo">
+            <input type="text"  class="inlineToBlock" name="username">
+            <input type="password"  class="inlineToBlock" name="password">
+        <button type="submit" class="inlineToBlock ordinaryLogin activatedLoginColor">회원가입</button>
+        </form>
+    </div>
+    
+  </div> 
+	<%- include('partials/footer') %>
+</body>
+</html>
