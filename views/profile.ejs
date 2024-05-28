@@ -1,5 +1,10 @@
 <%- include('partials/sidebar') %>
-<div id="main"><%=user.profile%><br>
+<div id="main"><img src="profiles/<%=user.profile%>">
+    <form method="POST" action="/uploadprofile" enctype="multipart/form-data">
+    <input type="file" name="profile">
+    <button type="submit">프로필 변경</button>
+</form>
+    <br>
     메일: <%=user.email%>,
     팔로잉:<%if(user.followin!=null){%>
         <%=user.followin.length%>,

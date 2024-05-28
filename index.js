@@ -7,7 +7,7 @@ import { Strategy } from "passport-local";
 import GoogleStrategy from "passport-google-oauth2";
 import session from "express-session";
 import env from "dotenv";
-import qs from "querystring"; 
+import multer from "multer"; 
 
 const app = express();
 const port = 3000;
@@ -37,15 +37,48 @@ const db = new pg.Client({
 
 db.connect();
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/profiles/');
+  },
+  filename: function (req, file, cb) {
+    const name = file.originalname; 
+    const after = name.split('.'); 
+    cb(null, req.user.email+"."+after[1]);
+  }, 
+  fileFilter: function (req,file,callback){
+    var ext = path.extname(file.originalname);
+    if(ext !==".png" && ext !== ".jpg" && ext!== ".jpeg"){
+      return callback(new Error("png jpg만")); 
+    }
+    callback(null,true); 
+  },
+  limits: {
+    fileSize: 1024*1024, 
+  }, 
+}); 
 
+var upload = multer({storage : storage}); 
+
+app.post("/uploadprofile", upload.single("profile"), async function(req, res){
+  try {
+    const result = await db.query("update users set profile = $1 where email=$2 ", [
+      req.file.filename, req.user.email    
+    ]);  
+    console.log(req.file); 
+  }catch(err){
+    console.log(err); 
+  } 
+  res.redirect("/"); 
+})
 
 app.get("/", async(req, res) => {
   if (req.isAuthenticated()) {
     try {
 
-      const result = await db.query("SELECT profile, email, array_length(follower,1) as 팔로워, array_length(followin,1) as 팔로잉  from users order by array_length(follower,1) desc nulls last limit 3 ");
+      const result = await db.query("SELECT profile, post, email, array_length(follower,1) as 팔로워, array_length(followin,1) as 팔로잉  from users order by array_length(follower,1) desc nulls last limit 3 ");
       const userlist = result.rows; 
-      const result1 = await db.query("SELECT profile, email, followin, follower FROM users WHERE email = $1 ", [
+      const result1 = await db.query("SELECT profile, email, post, followin, follower FROM users WHERE email = $1 ", [
         req.user.email,
         
       ]);
@@ -89,7 +122,7 @@ app.get("/post", async(req, res) => {
       target,
       
     ]);  
-     
+      
     res.render("post.ejs",{profile: result.rows[0].profile, 
       post:result.rows[0].post
     }); 
@@ -99,6 +132,8 @@ app.get("/post", async(req, res) => {
    
    
 }); 
+
+
 
 app.post("/unfollow", async(req, res) => {
   const email = req.user.email;
@@ -199,7 +234,7 @@ app.post("/register", async (req, res) => {
           console.error("Error hashing password:", err);
         } else {
           const result = await db.query(
-            "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *",
+            "INSERT INTO users (email, password, profile) VALUES ($1, $2, 'basic.png') RETURNING *",
             [email, hash]
           );
           const user = result.rows[0];
