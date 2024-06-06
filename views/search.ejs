@@ -11,25 +11,20 @@
         <button type="submit">검색</button>
     </form>
     <!-- 검색했을 때 가져오는 유저  -->
-<% if(searcheduser!=null){ %>   
-
-    <% if(searcheduser.followin==null){ %>
-        followin:0
-    <% } else { %>
-        <%= searcheduser.followin.length %>
-    <% } %>
-
-    <p>email:<%= searcheduser.email %></p>
-
-    <% if(searcheduser.follower==null){ %>
-        follower:0
-    <% } else { %>
-        follower:<%= searcheduser.follower.length %>
-    <% } %>
+<% if(searcheduser!=null&&searcheduser.email==user.email){ %>
+<p>본인입니다</p>
+    <% } %>    
+<% if(searcheduser!=null&&searcheduser.email!=user.email){ %>   
+    <a href="/post?email=<%= searcheduser.email %>"><img style="width:100px; height:100px;" src="profiles/<%=searcheduser.profile%>"></a>
+    <br>
+    email:<%= searcheduser.email %>
+    팔로잉:<%= searcheduser.followin.length %> 
+    팔로워:<%= searcheduser.follower.length %>
+    
     <br>
     
     
-    <% if(user.followin!=null && user.followin.includes(searcheduser.email)){ %>
+    <% if(user.followin.includes(searcheduser.email)){ %>
          
         <form id="1" method="post" action="/unfollow?email=<%= searcheduser.email %>">
             <a href="javascript:{}" onclick="document.getElementById('1').submit();" class="noneunderline">언팔로우</a>
@@ -38,7 +33,13 @@
         <% } else { %>
             <form id="2" method="post" action="/follow?email=<%= searcheduser.email %>">
                 <a href="javascript:{}" onclick="document.getElementById('2').submit();" class="noneunderline">팔로우</a>
-            </form>  
+            </form> 
+            <br>
+            <% if(!user.block.includes(searcheduser.email)){ %>
+            <a href="/block?email=<%= searcheduser.email %>">차단</a> 
+            <% } else {%>
+            <a href="/unblock?email=<%= searcheduser.email %>">차단해제</a>   
+                <% } %>
         <% } %>
     
 <% } %>

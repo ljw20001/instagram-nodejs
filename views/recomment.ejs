@@ -1,0 +1,21 @@
+<%- include('partials/sidebar') %>
+<div id="main">
+    <% recommentlist.map((recomment)=>{%>
+        <div id="comment">
+        <a href="post?email=<%=recomment.email%>"><img id="profile"src="profiles/<%=recomment.profile%>"></a>대댓글:<%=recomment.contents%>
+        <p>
+            <%if(recomment.likes.includes(user.email)){%>
+                좋아요:<%=recomment.likes.length%>
+            
+            <% } else { %>
+                <a href="/like?recommentid=<%=recomment.id%>">좋아요:</a><%=recomment.likes.length%>
+            <% } %>
+            <%if(user.email===recomment.email){%><a href="/delete?recommentid=<%=recomment.id%>">삭제하기</a><%}%></p>
+        
+         </div>
+    <%})%>
+    <form action="/recomment?commentid=<%= commentid%>" method="POST">
+        <input type="text" name="contents"/>
+        <button type="submit">대댓글쓰기</button>
+    </form>
+    </div>

@@ -1,15 +1,40 @@
 <%- include('partials/sidebar') %>
-<div id="main"><img src="profiles/<%=user.profile%>">
+<div id="main"><img id="profile"src="profiles/<%=user.profile%>">메일: <%=user.email%>,
+    팔로잉:<%=user.followin.length%>       
+    팔로워:<%=user.follower.length%>
+    <%if(user.private==false){%>
+    <a href="/private?boolean=true&email=<%=user.email%>"><button>비공개 계정 전환</button></a>
+    <% } else { %>
+    <a href="/private?boolean=false&email=<%=user.email%>"><button>공개 계정 전환</button></a>    
+    <% } %>
     <form method="POST" action="/uploadprofile" enctype="multipart/form-data">
     <input type="file" name="profile">
     <button type="submit">프로필 변경</button>
 </form>
     <br>
-    메일: <%=user.email%>,
-    팔로잉:<%if(user.followin!=null){%>
-        <%=user.followin.length%>,
-        <%}%>
-    팔로워:<%if(user.follower!=null){%>
-        <%=user.follower.length%>,
-        <%}%>
+     
+    <% postlist.map((post)=>{%> 
+    
+    <p><a href="/comment?postid=<%=post.id%>"><img id="post" src="posts/<%=post.contents%>"> </a>
+    좋아요:<%=post.likes.length%><br>
+    <a href="/delete?postid=<%=post.id%>">글삭제</a></p>
+    
+    <%})%>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <form method="POST" action="/uploadpost" enctype="multipart/form-data">
+    <input type="file" name="post">
+    <button type="submit">사진 올리기</button>
+    </form>  
+          
 </div>

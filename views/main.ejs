@@ -2,9 +2,10 @@
 <%list%>
 <%user%>
 <% list.map((person)=>{%>
-    <div id="main"><a href="/post?email=<%=person.email%>"><img id="main img"src="profiles/<%=user.profile%>"><%=person.email%></a>
+    <%if(!user.block.includes(person.email)){%>
+    <div id="main"><a href="/post?email=<%=person.email%>"><img id="profile"src="profiles/<%=person.profile%>"><%=person.email%></a>
 
-        <%if(user.followin!=null&&user.followin.includes(person.email)){%>
+        <%if(user.followin.includes(person.email)){%>
         <form action="/unfollow?email=<%= person.email %>" method="POST">
         <input type="hidden" name ="redirURL" value="/">
         <button type="submit">언팔로우</button>
@@ -15,8 +16,10 @@
             <input type="hidden" name ="redirURL" value="/">
             <button type="submit">팔로우</button>
             </form>
+            
         </div>
         <% } %>
+    <% } %>
 <%})%>
 
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <ul id="sidebar">
+        
+        
+        <img src="styles/logo.png" alt="l" id="instaLogo">
+        
+        <li><a  href="/"><span class="material-symbols-outlined">
+            home
+            </span>&nbsp;&nbsp;&nbsp;홈</a></li>
+        <li><a href="/search" id="search"><span class="material-symbols-outlined">
+            search
+            </span>&nbsp;&nbsp;&nbsp;검색</a></li>
+        <li><a href="/message" ><span class="material-symbols-outlined">
+            send
+            </span>&nbsp;&nbsp;&nbsp;메시지</a></li>
+        <li><a href="/profile" ><span class="material-symbols-outlined">
+            account_circle
+            </span>&nbsp;&nbsp;&nbsp;프로필</a></li>
+        <li id="logout">
+            <form id="my_form" method="get" action="/logout">
+            <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" ><span class="material-symbols-outlined">
+            logout
+            </span>&nbsp;&nbsp;&nbsp;로그아웃</a>
+            </form>
+        </li>
+    </ul>
+    <div id="main">
+        <form id="join-form">
+            <input id="partnername" placeholder="Partner's name" required />
+            <button type="submit">Join Chat</button>
+        </form>
+        <ul id="messages"></ul>
+        <form id="message-form" action="" style="display: none;">
+            <input id="input" autocomplete="off" /><button>Send</button>
+        </form>
+        
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+        const socket = io();
+        const joinForm = document.getElementById('join-form');
+        const messageForm = document.getElementById('message-form');
+        const input = document.getElementById('input');
+        const messages = document.getElementById('messages');
+        let user1, user2;
+
+            
+
+            joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            user1 = '<%= user.email%>'
+            user2 = document.getElementById('partnername').value;
+            socket.emit('join chat', { user1, user2 });
+
+            joinForm.style.display = 'none';
+            messageForm.style.display = 'block';
+        });
+            
+
+             messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', { user1, user2, username: user1, msg: input.value });
+                input.value = '';
+            }
+        });
+    
+        socket.on('chat message', function({ username, msg }) {
+            const item = document.createElement('li');
+            item.textContent = `${username}: ${msg}`;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        socket.on('previous messages', function(msgs) {
+            msgs.forEach(({ username, message }) => {
+                const item = document.createElement('li');
+                item.textContent = `${username}: ${message}`;
+                messages.appendChild(item);
+            });
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+        </script> 
+    </div>
+</body>
+</html>

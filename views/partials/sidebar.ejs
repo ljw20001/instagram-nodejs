@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <ul>
+    <ul id="sidebar">
         
         
         <img src="styles/logo.png" alt="l" id="instaLogo">
@@ -19,12 +19,13 @@
         <li><a href="/search" id="search"><span class="material-symbols-outlined">
             search
             </span>&nbsp;&nbsp;&nbsp;검색</a></li>
-        <li><a href="#" ><span class="material-symbols-outlined">
+        <li><a href="/message" ><span class="material-symbols-outlined">
             send
             </span>&nbsp;&nbsp;&nbsp;메시지</a></li>
         <li><a href="/profile" ><span class="material-symbols-outlined">
             account_circle
             </span>&nbsp;&nbsp;&nbsp;프로필</a></li>
+        
         <li id="logout">
             <form id="my_form" method="get" action="/logout">
             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" ><span class="material-symbols-outlined">

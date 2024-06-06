@@ -1,5 +1,32 @@
 <%- include('partials/sidebar') %>
-<div id="main">&nbsp;<img src="profiles/<%=profile%>"><br><br>
-    <%=post%>   
-
+<div id="main">&nbsp;<img id="profile"src="profiles/<%=target.profile%>">메일: <%=target.email%>,
+    팔로잉:<%=target.followin.length%>       
+    팔로워:<%=target.follower.length%>
+    <%if(user.followin.includes(target.email)){%>
+        <form action="/unfollow?email=<%= target.email %>" method="POST">
+        <input type="hidden" name ="redirURL" value="/">
+        <button type="submit">언팔로우</button>
+        </form>
+        <% } else { %>
+            <form action="/follow?email=<%= target.email %>" method="POST">
+            <input type="hidden" name ="redirURL" value="/">
+            <button type="submit">팔로우</button>
+            </form>
+        <% } %>
+    <br><br>
+<%if(target.private==true&&!user.followin.includes(target.email)){%> 
+    <p>비공개 계정입니다</p>
+<% } else if(target.block.includes(user.email)){ %>
+    <p>차단 되었습니다</p>
+    <% }else{  %>
+    <% postlist.map((post)=>{%> 
+    <a href="/comment?postid=<%=post.id%>&postemail=<%=target.email%>"><img id="post" src="posts/<%=post.contents%>"></a>
+    <%if(post.likes.includes(user.email)){%>
+        좋아요:</a><%=post.likes.length%>
+    
+    <% } else { %>
+        <a href="/like?postid=<%=post.id%>">좋아요:</a><%=post.likes.length%>
+    <% } %>
+    <%})%>
+<% } %>
 </div>
