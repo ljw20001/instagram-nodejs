@@ -294,3 +294,10 @@
 .noneunderline {
     text-decoration:none;
 }
+#quote{
+    margin: 90px auto;
+    max-width: 340px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+}

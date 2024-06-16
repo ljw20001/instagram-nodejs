@@ -9,29 +9,31 @@
     <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-    <div class="contentsWrap">
+    <p id="quote"><%=quote%></p>
+<div class="contentsWrap">
+    <div>
         <form action="/login" method="POST">
-        <div class="loginWindow">
-        
-            <img src="styles/logo.png" alt="l" id="instaLogo">
-            <input type="text"  class="inlineToBlock" name="username">
-            <input type="password" autoComplete="off"  class="inlineToBlock" name="password">
-        <button type="submit" class="inlineToBlock ordinaryLogin activatedLoginColor">로그인</button>
+            <div class="loginWindow">
+               
+                <img src="styles/logo.png" alt="l" id="instaLogo">
+                <input type="text"  class="inlineToBlock" name="username">
+                <input type="password" autoComplete="off"  class="inlineToBlock" name="password">
+            <button type="submit" class="inlineToBlock ordinaryLogin activatedLoginColor">로그인</button>
         </form>
-
+    </div>
         <div class="horizonAndOrWrap">
             <hr class="leftHr">
             <div class="or">또는</div>
             <hr class="rightHr">
         </div>
-
-        <a href="/auth/google" class="noneunderline">
-            <button class="inlineToBlock facebookLogin">
-                <img src="styles/google.png" alt="v" class="facebookIcon">
-                구글로 로그인
-            </button>
-        </a>
-    
+        
+            <a href="/auth/google" class="noneunderline">
+                <button class="inlineToBlock facebookLogin">
+                    <img src="styles/google.png" alt="v" class="facebookIcon">
+                    구글로 로그인
+                </button>
+            </a>
+        
     </div>
     <div class="haveAccount">
         <p>계정이 없으신가요?
@@ -40,7 +42,7 @@
           </form>
         </p>
     </div>
-  </div> 
+</div>
 	<%- include('partials/footer') %>
 </body>
 </html>
