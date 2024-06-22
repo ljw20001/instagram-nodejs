@@ -1,6 +1,8 @@
 화면구성 
 0. 로그인(외부 api연결해서 행복에 대한 무작위 격언 표시,
           이메일 똑같은 구글계정 승인)
+ ![image](https://github.com/ljw20215223/instagram-nodejs/assets/118512075/e88f2c61-c0c3-4685-b537-ac44c158a75b)
+         
 1. 홈(팔로워 많은 순으로 3명 나열, 클릭 시 포스팅 목록으로 이동)
 ![image](https://github.com/ljw20215223/instagram-nodejs/assets/118512075/9f0ad567-fdb1-434c-9691-0642c4ab19f8)
 
