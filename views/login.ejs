@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="/styles/login.css">
 </head>
 <body>
     <p id="quote"><%=quote%></p>
 <div class="contentsWrap">
     <div>
-        <form action="/login" method="POST">
+        <form action="/authe/login" method="POST">
             <div class="loginWindow">
                
-                <img src="styles/logo.png" alt="l" id="instaLogo">
+                <img src="/styles/logo.png" alt="l" id="instaLogo">
                 <input type="text"  class="inlineToBlock" name="username">
                 <input type="password" autoComplete="off"  class="inlineToBlock" name="password">
             <button type="submit" class="inlineToBlock ordinaryLogin activatedLoginColor">로그인</button>
@@ -27,9 +27,9 @@
             <hr class="rightHr">
         </div>
         
-            <a href="/auth/google" class="noneunderline">
+            <a href="/authe/auth/google" class="noneunderline">
                 <button class="inlineToBlock facebookLogin">
-                    <img src="styles/google.png" alt="v" class="facebookIcon">
+                    <img src="/styles/google.png" alt="v" class="facebookIcon">
                     구글로 로그인
                 </button>
             </a>
@@ -37,7 +37,7 @@
     </div>
     <div class="haveAccount">
         <p>계정이 없으신가요?
-          <form id="my_form" method="get" action="/register">
+          <form id="my_form" method="get" action="/authe/register">
           <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" class="noneunderline">가입하기</a>
           </form>
         </p>

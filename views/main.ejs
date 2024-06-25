@@ -6,13 +6,13 @@
     <div id="main"><a href="/post?email=<%=person.email%>"><img id="profile"src="profiles/<%=person.profile%>"><%=person.email%></a>
 
         <%if(user.followin.includes(person.email)){%>
-        <form action="/unfollow?email=<%= person.email %>" method="POST">
+        <form action="/user/unfollow?email=<%= person.email %>" method="POST">
         <input type="hidden" name ="redirURL" value="/">
         <button type="submit">언팔로우</button>
         </form>
     </div>
         <% } else { %>
-            <form action="/follow?email=<%= person.email %>" method="POST">
+            <form action="/user/follow?email=<%= person.email %>" method="POST">
             <input type="hidden" name ="redirURL" value="/">
             <button type="submit">팔로우</button>
             </form>

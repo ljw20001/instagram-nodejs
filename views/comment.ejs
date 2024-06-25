@@ -2,23 +2,23 @@
 <div id="main">
 <% commentlist.map((comment)=>{%>
     <div id="comment">
-    <a href="post?email=<%=comment.email%>"><img id="profile"src="profiles/<%=comment.profile%>"></a>댓글:<%=comment.contents%>
+    <a href="/post?email=<%=comment.email%>"><img id="profile"src="/profiles/<%=comment.profile%>"></a>댓글:<%=comment.contents%>
     <p>
         <%if(comment.likes.includes(user.email)){%>
             좋아요:<%=comment.likes.length%>
         
         <% } else { %>
-            <a href="/like?commentid=<%=comment.id%>">좋아요:</a><%=comment.likes.length%>
+            <a href="/post/like?commentid=<%=comment.id%>">좋아요:</a><%=comment.likes.length%>
         <% } %>
         
-        &nbsp;&nbsp;<a href="/recomment?commentid=<%=comment.id%>">대댓글보기</a>&nbsp;&nbsp;
-        <%if(user.email===comment.email){%><a href="/delete?commentid=<%=comment.id%>">삭제하기</a><%}%>
+        &nbsp;&nbsp;<a href="/post/recomment?commentid=<%=comment.id%>">대댓글보기</a>&nbsp;&nbsp;
+        <%if(user.email===comment.email){%><a href="/post/delete?commentid=<%=comment.id%>">삭제하기</a><%}%>
          
     </p>
      
      </div>
 <%})%>
-<form action="/comment?postid=<%= postid%>&postemail=<%= postemail%>" method="POST">
+<form action="/post/comment?postid=<%= postid%>&postemail=<%= postemail%>" method="POST">
     <input type="text" name="contents"/>
     <button type="submit">댓글쓰기</button>
 </form>

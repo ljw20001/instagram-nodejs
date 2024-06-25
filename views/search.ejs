@@ -15,7 +15,7 @@
 <p>본인입니다</p>
     <% } %>    
 <% if(searcheduser!=null&&searcheduser.email!=user.email){ %>   
-    <a href="/post?email=<%= searcheduser.email %>"><img style="width:100px; height:100px;" src="profiles/<%=searcheduser.profile%>"></a>
+    <a href="/post?email=<%= searcheduser.email %>"><img style="width:100px; height:100px;" src="/profiles/<%=searcheduser.profile%>"></a>
     <br>
     email:<%= searcheduser.email %>
     팔로잉:<%= searcheduser.followin.length %> 
@@ -26,19 +26,19 @@
     
     <% if(user.followin.includes(searcheduser.email)){ %>
          
-        <form id="1" method="post" action="/unfollow?email=<%= searcheduser.email %>">
+        <form id="1" method="post" action="/user/unfollow?email=<%= searcheduser.email %>">
             <a href="javascript:{}" onclick="document.getElementById('1').submit();" class="noneunderline">언팔로우</a>
         </form> 
         
         <% } else { %>
-            <form id="2" method="post" action="/follow?email=<%= searcheduser.email %>">
+            <form id="2" method="post" action="/user/follow?email=<%= searcheduser.email %>">
                 <a href="javascript:{}" onclick="document.getElementById('2').submit();" class="noneunderline">팔로우</a>
             </form> 
             <br>
             <% if(!user.block.includes(searcheduser.email)){ %>
-            <a href="/block?email=<%= searcheduser.email %>">차단</a> 
+            <a href="/user/block?email=<%= searcheduser.email %>">차단</a> 
             <% } else {%>
-            <a href="/unblock?email=<%= searcheduser.email %>">차단해제</a>   
+            <a href="/user/unblock?email=<%= searcheduser.email %>">차단해제</a>   
                 <% } %>
         <% } %>
     

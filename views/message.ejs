@@ -22,11 +22,11 @@
         <li><a href="/message" ><span class="material-symbols-outlined">
             send
             </span>&nbsp;&nbsp;&nbsp;메시지</a></li>
-        <li><a href="/profile" ><span class="material-symbols-outlined">
+        <li><a href="/user/profile" ><span class="material-symbols-outlined">
             account_circle
             </span>&nbsp;&nbsp;&nbsp;프로필</a></li>
         <li id="logout">
-            <form id="my_form" method="get" action="/logout">
+            <form id="my_form" method="get" action="authe/logout">
             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" ><span class="material-symbols-outlined">
             logout
             </span>&nbsp;&nbsp;&nbsp;로그아웃</a>
@@ -39,7 +39,7 @@
             <button type="submit">Join Chat</button>
         </form>
         <ul id="messages"></ul>
-        <form id="message-form" action="" style="display: none;">
+        <form id="message-form" action="/dm" style="display: none;">
             <input id="input" autocomplete="off" /><button>Send</button>
         </form>
         

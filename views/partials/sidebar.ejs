@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <ul id="sidebar">
         
         
-        <img src="styles/logo.png" alt="l" id="instaLogo">
+        <img src="/styles/logo.png" alt="l" id="instaLogo">
         
         <li><a  href="/"><span class="material-symbols-outlined">
             home
@@ -22,12 +22,12 @@
         <li><a href="/message" ><span class="material-symbols-outlined">
             send
             </span>&nbsp;&nbsp;&nbsp;메시지</a></li>
-        <li><a href="/profile" ><span class="material-symbols-outlined">
+        <li><a href="/user/profile" ><span class="material-symbols-outlined">
             account_circle
             </span>&nbsp;&nbsp;&nbsp;프로필</a></li>
         
         <li id="logout">
-            <form id="my_form" method="get" action="/logout">
+            <form id="my_form" method="get" action="/authe/logout">
             <a href="javascript:{}" onclick="document.getElementById('my_form').submit();" ><span class="material-symbols-outlined">
             logout
             </span>&nbsp;&nbsp;&nbsp;로그아웃</a>

@@ -3,12 +3,12 @@
     팔로잉:<%=target.followin.length%>       
     팔로워:<%=target.follower.length%>
     <%if(user.followin.includes(target.email)){%>
-        <form action="/unfollow?email=<%= target.email %>" method="POST">
+        <form action="/user/unfollow?email=<%= target.email %>" method="POST">
         <input type="hidden" name ="redirURL" value="/">
         <button type="submit">언팔로우</button>
         </form>
         <% } else { %>
-            <form action="/follow?email=<%= target.email %>" method="POST">
+            <form action="/user/follow?email=<%= target.email %>" method="POST">
             <input type="hidden" name ="redirURL" value="/">
             <button type="submit">팔로우</button>
             </form>
@@ -20,12 +20,12 @@
     <p>차단 되었습니다</p>
     <% }else{  %>
     <% postlist.map((post)=>{%> 
-    <a href="/comment?postid=<%=post.id%>&postemail=<%=target.email%>"><img id="post" src="posts/<%=post.contents%>"></a>
+    <a href="/post/comment?postid=<%=post.id%>&postemail=<%=target.email%>"><img id="post" src="posts/<%=post.contents%>"></a>
     <%if(post.likes.includes(user.email)){%>
         좋아요:</a><%=post.likes.length%>
     
     <% } else { %>
-        <a href="/like?postid=<%=post.id%>">좋아요:</a><%=post.likes.length%>
+        <a href="/post/like?postid=<%=post.id%>">좋아요:</a><%=post.likes.length%>
     <% } %>
     <%})%>
 <% } %>
