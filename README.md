@@ -24,8 +24,9 @@ islogin 미들웨어로 매번 로그인됐는지 확인<br>
 글삭제 시 내부 댓글 및 대댓글 자동삭제<br>
 팔로우 시 내 팔로잉 배열에 상대방 추가 상대방 팔로워 배열에 나 추가<br><br>
 
-폴더 구조<br>
-![image](https://github.com/ljw20215223/instagram-nodejs/assets/118512075/44801567-f225-451e-999e-1d9b69d00492)
+폴더 구조(routes 추가)<br>
+![image](https://github.com/ljw20215223/instagram-nodejs/assets/118512075/97b01639-ddd0-47dd-b3a7-71e9d49e0073)
+
 
 
 막힌 문제들과 해결책들 <br><br>
