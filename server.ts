@@ -1,13 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import bcrypt from "bcrypt";
 import passport from "passport";
-import { Strategy } from "passport-local";
-import GoogleStrategy from "passport-google-oauth2";
 import session from "express-session";
 import env from "dotenv";
-import multer from "multer"; 
 import { Server } from "socket.io";
 import http from "http"; 
 
@@ -21,7 +17,7 @@ import search from "./routes/search.js";
 
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 env.config(); 
 
@@ -50,6 +46,7 @@ const db = new pg.Client({
   database: process.env.RDS_DB_NAME,
   password: process.env.RDS_PASSWORD,
   port: Number(process.env.RDS_PORT),
+  
 });
 
 db.connect();

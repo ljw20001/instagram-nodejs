@@ -27,7 +27,7 @@ const posts_js_1 = __importDefault(require("./routes/posts.js"));
 const user_js_1 = __importDefault(require("./routes/user.js"));
 const search_js_1 = __importDefault(require("./routes/search.js"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = 8080;
 dotenv_1.default.config();
 app.use((0, express_session_1.default)({
     secret: process.env.SESSION_SECRET,

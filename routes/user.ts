@@ -14,6 +14,7 @@ const db = new pg.Client({
     database: process.env.RDS_DB_NAME,
     password: process.env.RDS_PASSWORD,
     port: Number(process.env.RDS_PORT),
+    
   });
   
   db.connect();
@@ -47,7 +48,10 @@ const db = new pg.Client({
     try {
       const result = await db.query("update users set profile = $1 where email=$2 ", [
         req.file!.filename, req.user!.email    
-      ]);  
+      ]); 
+      const result2 = await db.query("update commen set profile = $1 where email=$2 ", [
+        req.file!.filename, req.user!.email    
+      ]); 
       console.log(req.file); 
     }catch(err){
       console.log(err); 

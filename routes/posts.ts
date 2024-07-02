@@ -14,6 +14,7 @@ const db = new pg.Client({
     database: process.env.RDS_DB_NAME,
     password: process.env.RDS_PASSWORD,
     port: Number(process.env.RDS_PORT),
+    
   });
   
   db.connect();

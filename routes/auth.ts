@@ -1,6 +1,6 @@
 
 import pg from "pg";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import passport from "passport";
 import { Strategy } from "passport-local";
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
@@ -17,7 +17,8 @@ const db = new pg.Client({
     host: process.env.RDS_HOSTNAME,
     database: process.env.RDS_DB_NAME,
     password: process.env.RDS_PASSWORD,
-    port: Number(process.env.RDS_PORT)
+    port: Number(process.env.RDS_PORT),
+    
   });
 db.connect();
 

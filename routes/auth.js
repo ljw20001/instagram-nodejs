@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = __importDefault(require("pg"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const passport_1 = __importDefault(require("passport"));
 const passport_local_1 = require("passport-local");
 const passport_google_oauth2_1 = require("passport-google-oauth2");
@@ -28,7 +28,7 @@ const db = new pg_1.default.Client({
     host: process.env.RDS_HOSTNAME,
     database: process.env.RDS_DB_NAME,
     password: process.env.RDS_PASSWORD,
-    port: Number(process.env.RDS_PORT)
+    port: Number(process.env.RDS_PORT),
 });
 db.connect();
 router.get("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -56,7 +56,7 @@ passport_1.default.use("local", new passport_local_1.Strategy(function verify(us
             if (result.rows.length > 0) {
                 const user = result.rows[0];
                 const storedHashedPassword = user.password;
-                bcrypt_1.default.compare(password, storedHashedPassword, (err, valid) => {
+                bcryptjs_1.default.compare(password, storedHashedPassword, (err, valid) => {
                     if (err) {
                         console.error("Error comparing passwords:", err);
                         return cb(err);
@@ -136,7 +136,7 @@ router.post("/register", (req, res) => __awaiter(void 0, void 0, void 0, functio
             res.redirect("/authe/login");
         }
         else {
-            bcrypt_1.default.hash(password, saltRounds, (err, hash) => __awaiter(void 0, void 0, void 0, function* () {
+            bcryptjs_1.default.hash(password, saltRounds, (err, hash) => __awaiter(void 0, void 0, void 0, function* () {
                 if (err) {
                     console.error("Error hashing password:", err);
                 }

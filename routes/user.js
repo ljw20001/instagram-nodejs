@@ -57,6 +57,9 @@ router.post("/uploadprofile", isLogged_js_1.default, uploadprofile.single("profi
             const result = yield db.query("update users set profile = $1 where email=$2 ", [
                 req.file.filename, req.user.email
             ]);
+            const result2 = yield db.query("update commen set profile = $1 where email=$2 ", [
+                req.file.filename, req.user.email
+            ]);
             console.log(req.file);
         }
         catch (err) {
